@@ -27,14 +27,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DisplayNearbyKindergarten extends AppCompatActivity {
-
-
-
-
     private static final String TAG = "pttt";
     private ListView mListView;
     private RecyclerView recyclerView;
     private ArrayList<Kindergarten> resultList=new ArrayList<Kindergarten>();
+
     Location lastLocation;
     FragmentMap fragment_map;
 
@@ -58,9 +55,7 @@ public class DisplayNearbyKindergarten extends AppCompatActivity {
     //This function shows on the map the kindergartens that are nearby.
     private void openHttpRequestForPlaces(double lat, double lng) {
 
-        Log.d(TAG, "openHttpRequestForPlaces: Searching for places around" +
-                lat+" ," +lng);
-
+        Log.d(TAG, "openHttpRequestForPlaces: Searching for places around" + lat+" ," +lng);
         int myRadius = 3000;
         String baseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
         String tempLocation = "" +lastLocation.getLatitude()+ "," + "" + lastLocation.getLongitude();
@@ -68,9 +63,8 @@ public class DisplayNearbyKindergarten extends AppCompatActivity {
         String tempType="&type=establishment";
         String tempPlaceContainBeach="&keyword=Kindergarten";
         String apiKey = "&key=AIzaSyDBPfMDN1CGaF5OaA8O83ADn7dUsHkHB4Q";
-        String url = baseUrl + tempLocation + tempRadius+tempType +tempPlaceContainBeach + apiKey;
+        String url = baseUrl + tempLocation + tempRadius + tempType + tempPlaceContainBeach + apiKey;
         Log.d(TAG, "openHttpRequestForPlaces: "+url);
-
         OkHttpClient okHttpClient = new OkHttpClient();
         Log.d(TAG, "openHttpRequestForPlaces: Requesting:\n" + url);
         Request request = new Request.Builder()

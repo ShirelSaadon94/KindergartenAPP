@@ -126,4 +126,8 @@
 
     <string name="show_given_items">Show given items</string>
     <string name="show_needed_items">Show needed items</string>
+    <string name="No">No</string>
+    <string name="Yes">Yes</string>
+    <string name="Parent">Parent</string>
+    <string name="Teacher">Teacher</string>
 </resources>

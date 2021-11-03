@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/newAccount_LAY_mainLayout"
@@ -181,6 +182,59 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newAccount_SWT_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorPrimary"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/newAccount_EDT_phoneNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/newAccount_EDT_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newAccount_EDT_phoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newAccount_EDT_phoneNumber"
+        app:layout_constraintVertical_bias="0.097"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:startIconTint="@color/colorPrimary">
+
+        <Switch
+            android:id="@+id/newAccount_SWT_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Parent"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+            android:textOff="@string/No"
+            android:textOn="@string/Yes" />
+
+        <Switch
+            android:id="@+id/newAccount_SWT_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Teacher"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+            android:textOff="@string/No"
+            android:textOn="@string/Yes" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/newAccount_EDT_submit"
         android:layout_width="match_parent"

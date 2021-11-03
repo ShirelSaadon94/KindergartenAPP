@@ -55,11 +55,6 @@ public class LoginActivity extends AppCompatActivity implements NewAccountDialog
     private TextView login_LBL_createCount;
 
 
-
-
-
-
-
     User user;
 
     @Override
@@ -76,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements NewAccountDialog
         login_BTN_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login_BTN_login.setClickable(false);
+                //login_BTN_login.setClickable(false);
                 email = login_EDT_mail.getText().toString();
                 password = login_EDT_password.getText().toString();
                 login();
@@ -215,10 +210,6 @@ public class LoginActivity extends AppCompatActivity implements NewAccountDialog
 
             }
         });
-
-
-
-
     }
 
 

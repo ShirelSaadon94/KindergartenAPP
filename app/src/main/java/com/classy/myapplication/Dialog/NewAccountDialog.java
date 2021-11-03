@@ -1,7 +1,6 @@
 package com.classy.myapplication.Dialog;
 
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,7 +9,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 
 import androidx.annotation.NonNull;
@@ -38,10 +38,13 @@ public class NewAccountDialog extends Dialog {
     private TextInputLayout newAccount_EDT_password;
     private TextInputLayout newAccount_EDT_id;
     private TextInputLayout newAccount_EDT_phoneNumber;
-
+    private Switch newAccount_SWT_parent;
+    private Switch newAccount_SWT_teacher;
     private MaterialButton newAccount_EDT_submit;
 
+    private boolean isParent = false, isTeacher = false;
     User user;
+
     public NewAccountDialog(@NonNull Context context) {
         super(context);
         this.context = context;
@@ -54,8 +57,15 @@ public class NewAccountDialog extends Dialog {
         setContentView(R.layout.dialog_new_account);
 
 
-
         findViews();
+        checkTheSwitch();
+        newAccount_EDT_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkValidInfo();
+            }
+        });
+        setViewListeners();
     }
 
 
@@ -69,13 +79,9 @@ public class NewAccountDialog extends Dialog {
         newAccount_EDT_id = findViewById(R.id.newAccount_EDT_id);
         newAccount_EDT_phoneNumber = findViewById(R.id.newAccount_EDT_phoneNumber);
         newAccount_EDT_submit = findViewById(R.id.newAccount_EDT_submit);
-        newAccount_EDT_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkValidInfo();
-            }
-        });
-        setViewListeners();
+        newAccount_SWT_parent = findViewById(R.id.newAccount_SWT_parent);
+        newAccount_SWT_teacher = findViewById(R.id.newAccount_SWT_teacher);
+
     }
 
     /**
@@ -138,6 +144,7 @@ public class NewAccountDialog extends Dialog {
      * A method to check the valid information
      */
     private void checkValidInfo() {
+
         Log.d(TAG, "checkValidInfo: Checking valid input");
         if (newAccount_EDT_name.getEditText().getText().toString().equals("")) {
             Log.d(TAG, "checkForValidInputs: first name invalid");
@@ -163,7 +170,41 @@ public class NewAccountDialog extends Dialog {
             }
         }
 
-        sendInfoToLoginActivity();
+
+        if (isParent) {
+            sendInfoToLoginActivity();
+        }
+
+    }
+
+    //turn on/off the switch
+    void checkTheSwitch() {
+        newAccount_SWT_teacher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (newAccount_SWT_teacher.isChecked()) {
+                    isTeacher = true;
+                    Log.d(TAG, "teacherSwitch = true");
+                } else {
+                    isTeacher = false;
+                    Log.d(TAG, "teacherSwitch = false");
+                }
+            }
+        });
+
+        newAccount_SWT_parent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (newAccount_SWT_parent.isChecked()) {
+                    isParent = true;
+                    Log.d(TAG, "parentSwitch = true");
+                } else {
+                    isParent = false;
+                    Log.d(TAG, "parentSwitch = false");
+                }
+            }
+        });
+
     }
 
     /**
@@ -171,7 +212,7 @@ public class NewAccountDialog extends Dialog {
      */
     private void sendInfoToLoginActivity() {
         Log.d(TAG, "sendInfoToLoginActivity: sending info back");
-
+        ParentUser parentUser = new ParentUser();
         //Extracting information after check to a user object
 
         String name = newAccount_EDT_name.getEditText().getText().toString();
@@ -180,7 +221,7 @@ public class NewAccountDialog extends Dialog {
         String id = newAccount_EDT_id.getEditText().getText().toString();
         String phoneNumber = newAccount_EDT_phoneNumber.getEditText().getText().toString();
 
-        ParentUser parentUser = new ParentUser(name,id,email,password,phoneNumber);
+        parentUser = new ParentUser(name, id, email, password, phoneNumber);
 
 
         //Creating a new user with the extracted information

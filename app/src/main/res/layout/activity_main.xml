@@ -10,9 +10,6 @@
     android:weightSum="10"
     tools:context=".Activity.MainActivity">
 
-
-
-
     <GridLayout
 
         android:id="@+id/mainGrid"
@@ -33,6 +30,7 @@
         <!-- COLUMN 2  -->
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/main_MCV_profile"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -72,6 +70,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/main_MCV_gardens"
             android:layout_width="wrap_content"
             android:layout_height="5dp"
             android:layout_rowWeight="1"
@@ -114,6 +113,7 @@
         <!-- COLUMN 1  -->
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/main_MCV_chat"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
